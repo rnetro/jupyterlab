@@ -73,6 +73,16 @@ const CONSOLE_PANEL = 'jp-Console-panel';
  */
 const BANNER_CLASS = 'jp-Console-banner';
 
+/**
+ * The class name added active line distinction to the console.
+ */
+const ACTIVE_CLASS = 'jp-Console-activeLine';
+
+/**
+ * The class name added read-only line distinction to the console.
+ */
+const PROMPT_CLASS = 'jp-Console-readOnly';
+
 
 /**
  * A panel which contains a toolbar and a console.
@@ -348,6 +358,7 @@ class ConsoleWidget extends Widget {
    * Serialize the output.
    */
   serialize(): nbformat.ICodeCell[] {
+    this.addClass(ACTIVE_CLASS);
     let output: nbformat.ICodeCell[] = [];
     let layout = this.layout as PanelLayout;
     for (let i = 1; i < layout.childCount(); i++) {
@@ -383,6 +394,8 @@ class ConsoleWidget extends Widget {
     let prompt = this.prompt;
     if (prompt) {
       prompt.readOnly = true;
+      //Remove active line class
+      prompt.addClass(PROMPT_CLASS);
       clearSignalData(prompt.editor);
     }
 

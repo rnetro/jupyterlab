@@ -26,7 +26,11 @@ import {
 } from 'phosphide/lib/core/application';
 
 import {
-  Menu, MenuItem
+  MainMenu, mainMenuProvider
+} from '../mainmenu/plugin';
+
+import {
+  MenuItem, Menu, IMenuItemOptions, MenuItemType
 } from 'phosphor-menus';
 
 import {
@@ -44,7 +48,7 @@ import {
 export
 const fileBrowserExtension = {
   id: 'jupyter.extensions.fileBrowser',
-  requires: [ServiceManager, DocumentRegistry],
+  requires: [ServiceManager, DocumentRegistry, MainMenu],
   activate: activateFileBrowser
 };
 
@@ -67,7 +71,9 @@ const TEXTEDITOR_ICON_CLASS = 'jp-ImageTextEditor';
 /**
  * Activate the file browser.
  */
-function activateFileBrowser(app: Application, manager: ServiceManager, registry: DocumentRegistry): Promise<void> {
+function activateFileBrowser(app: Application, provider: ServiceManager, registry: DocumentRegistry, mainMenu: MainMenu): Promise<void> {
+  let contents = provider.contents;
+  let sessions = provider.sessions;
   let id = 0;
 
   let tracker = new WidgetTracker<Widget>();
@@ -75,6 +81,15 @@ function activateFileBrowser(app: Application, manager: ServiceManager, registry
   tracker.activeWidgetChanged.connect((sender, widget) => {
     activeWidget = widget;
   });
+
+  let fileMenu = new MenuItem({
+    text: 'File',
+    submenu: menu
+  });
+  currentApp = app;
+  if (mainMenu.containsItem(fileMenu) === false) {
+    mainMenu.addItem(fileMenu);
+  }
 
   let opener: IWidgetOpener = {
     open: (widget) => {
@@ -90,15 +105,22 @@ function activateFileBrowser(app: Application, manager: ServiceManager, registry
 
   let docManager = new DocumentManager({
     registry,
-    manager,
+    contentsManager: contents,
+    sessionManager: sessions,
+    kernelspecs: provider.kernelspecs,
     opener
   });
-  let fbModel = new FileBrowserModel({ manager });
+  let fbModel = new FileBrowserModel({
+    contentsManager: contents,
+    sessionManager: sessions,
+    kernelspecs: provider.kernelspecs
+  });
   let fbWidget = new FileBrowserWidget({
     model: fbModel,
     manager: docManager,
     opener
   });
+  let menu = createMenu(fbWidget);
 
   // Add a context menu to the dir listing.
   let node = fbWidget.node.getElementsByClassName('jp-DirListing-content')[0];
@@ -106,21 +128,6 @@ function activateFileBrowser(app: Application, manager: ServiceManager, registry
     event.preventDefault();
     let x = event.clientX;
     let y = event.clientY;
-    let path = fbWidget.pathForClick(event);
-    let ext = '.' + path.split('.').pop();
-    let widgetNames = registry.listWidgetFactories(ext);
-    let items: MenuItem[] = [];
-    if (widgetNames.length > 1) {
-      for (let widgetName of widgetNames) {
-        items.push(new MenuItem({
-          text: widgetName,
-          handler: () => {
-            fbWidget.openPath(path, widgetName);
-          }
-        }));
-      }
-    }
-    let menu = createMenu(fbWidget, items);
     menu.popup(x, y);
   });
 
@@ -299,22 +306,14 @@ function activateFileBrowser(app: Application, manager: ServiceManager, registry
 /**
  * Create a context menu for the file browser listing.
  */
-function createMenu(fbWidget: FileBrowserWidget, openWith: MenuItem[]):  Menu {
-  let items = [
+function createMenu(fbWidget: FileBrowserWidget):  Menu {
+  return new Menu([
     new MenuItem({
       text: '&Open',
       icon: 'fa fa-folder-open-o',
       shortcut: 'Ctrl+O',
       handler: () => { fbWidget.open(); }
-    })
-  ];
-  if (openWith.length) {
-    items.push(new MenuItem({
-      text: 'Open With...',
-      submenu: new Menu(openWith)
-    }));
-  }
-  items.push(
+    }),
     new MenuItem({
       text: '&Rename',
       icon: 'fa fa-edit',
@@ -360,6 +359,5 @@ function createMenu(fbWidget: FileBrowserWidget, openWith: MenuItem[]):  Menu {
       icon: 'fa fa-stop-circle-o',
       handler: () => { fbWidget.shutdownKernels(); }
     })
-  );
-  return new Menu(items);
+  ]);
 }

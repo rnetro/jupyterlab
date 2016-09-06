@@ -23,7 +23,7 @@ const inspectorProvider: JupyterLabPlugin<IInspector> = {
 
 
 /**
- * Activate the console extension.
+ * Activate the code console extension.
  */
 function activateInspector(app: JupyterLab): IInspector {
   let inspector = new Inspector({ items: Private.defaultInspectorItems });

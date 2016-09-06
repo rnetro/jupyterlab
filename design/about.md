@@ -4,7 +4,7 @@ This document describes the design of the "About JupyterLab" plugin. This docume
 
 ## Personas
 
-### Ricardo Godfrey 
+### Ricardo Godfrey
 
 * Male 25, Full Stack Engineer
 
@@ -12,7 +12,7 @@ This document describes the design of the "About JupyterLab" plugin. This docume
 
     * Done with charts, graphs, tables (Matplotlib and Pandas), live code, images integrated in text
 
-### Krista 
+### Krista
 
 * Female 40, Engineering Professor
 
@@ -74,7 +74,7 @@ The title slide will contain the JupyterLab logo near the top, and welcome text 
 
 After the title slide, there will be a few more slides for each feature. Each slide will have a mini icon and title for the feature, an animated image (*.gif or *.gifv file) showing the user process of the feature, and a more in-depth description of the "feature".
 
-The final slide will give the user the ability to start working with a Notebook, Console, and/or Terminal—very similar to the Launcher plugin—acting as a Call-to-Action for the user to start using JupyterLab.
+The final slide will give the user the ability to start working with a Notebook, Code Console, and/or Terminal—very similar to the Launcher plugin—acting as a Call-to-Action for the user to start using JupyterLab.
 
 Each slide will have a downwards arrow (" ╲╱ ") at the bottom of the viewport to encourage the user to continue learning about the features of JupyterLab, as well as a fixed slide pagination on the right side of the window, to help the user understand which slide they’re on and what slides are available to them.
 
@@ -99,4 +99,3 @@ Motion will also be implemented in our animations for each feature, using a movi
 ---
 
 Please let our team know if you have any questions, suggestions, or comments about the design of the About plugin. Thank you!
-

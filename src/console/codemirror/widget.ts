@@ -27,7 +27,7 @@ import {
 
 
 /**
- * A code mirror renderer for a console.
+ * A code mirror renderer for a code console.
  */
 export
 class CodeMirrorConsoleRenderer implements ConsoleWidget.IRenderer {
@@ -62,7 +62,7 @@ class CodeMirrorConsoleRenderer implements ConsoleWidget.IRenderer {
 export
 namespace CodeMirrorConsoleRenderer {
   /**
-   * A default code mirror renderer for a console.
+   * A default code mirror renderer for a code console.
    */
   export
   const defaultRenderer = new CodeMirrorConsoleRenderer();

@@ -31,24 +31,24 @@ import {
 
 
 /**
- * The class name added to console panels.
+ * The class name added to code console panels.
  */
 const PANEL_CLASS = 'jp-ConsolePanel';
 
 
 /**
- * A panel which contains a console and the ability to add other children.
+ * A panel which contains a code console and the ability to add other children.
  */
 export
 class ConsolePanel extends Panel {
   /**
-   * Construct a console panel.
+   * Construct a code console panel.
    */
   constructor(options: ConsolePanel.IOptions) {
     super();
     this.addClass(PANEL_CLASS);
 
-    // Create console widget.
+    // Create code console widget.
     this._console = options.console || new ConsoleWidget({
       session: options.session,
       rendermime: options.rendermime,
@@ -58,12 +58,12 @@ class ConsolePanel extends Panel {
   }
 
   /**
-   * A signal emitted when the console panel has been activated.
+   * A signal emitted when the code console panel has been activated.
    */
   activated: ISignal<ConsolePanel, void>;
 
   /**
-   * The console widget used by the panel.
+   * The code console widget used by the panel.
    *
    * #### Notes
    * This is a read-only property.
@@ -80,7 +80,7 @@ class ConsolePanel extends Panel {
       return;
     }
 
-    // Dispose console widget.
+    // Dispose code console widget.
     this._console.dispose();
     this._console = null;
 
@@ -128,37 +128,37 @@ defineSignal(ConsolePanel.prototype, 'activated');
 
 
 /**
- * A namespace for ConsolePanel statics.
+ * A namespace for Code ConsolePanel statics.
  */
 export
 namespace ConsolePanel {
   /**
-   * The initialization options for a console panel.
+   * The initialization options for a code console panel.
    */
   export
   interface IOptions {
     /**
-     * The optional console widget instance to display in the console panel.
+     * The optional code console widget instance to display in the code console panel.
      *
      * #### Notes
-     * If a console widget is passed in, its MIME renderer and session must
-     * match the values in the console panel options argument or it will result
+     * If a code console widget is passed in, its MIME renderer and session must
+     * match the values in the code console panel options argument or it will result
      * in undefined behavior.
      */
     console?: ConsoleWidget;
 
     /**
-     * The mime renderer for the console panel.
+     * The mime renderer for the code console panel.
      */
     rendermime: IRenderMime;
 
     /**
-     * The renderer for a console widget.
+     * The renderer for a code console widget.
      */
     renderer: ConsoleWidget.IRenderer;
 
     /**
-     * The session for the console panel.
+     * The session for the code console panel.
      */
     session: ISession;
   }

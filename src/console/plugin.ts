@@ -55,7 +55,7 @@ import {
 
 
 /**
- * The console extension.
+ * The code console extension.
  */
 export
 const consoleExtension: JupyterLabPlugin<void> = {
@@ -80,18 +80,18 @@ const consoleExtension: JupyterLabPlugin<void> = {
 const LANDSCAPE_ICON_CLASS = 'jp-MainAreaLandscapeIcon';
 
 /**
- * The class name for the console icon from the default theme.
+ * The class name for the code console icon from the default theme.
  */
 const CONSOLE_ICON_CLASS = 'jp-ImageConsole';
 
 /**
- * The file extension for consoles.
+ * The file extension for code consoles.
  */
 const FILE_EXTENSION = 'jpcon';
 
 
 /**
- * Activate the console extension.
+ * Activate the code console extension.
  */
 function activateConsole(app: JupyterLab, services: IServiceManager, rendermime: IRenderMime, mainMenu: IMainMenu, inspector: IInspector, palette: ICommandPalette, pathTracker: IPathTracker, renderer: ConsoleWidget.IRenderer): void {
   let tracker = new FocusTracker<ConsolePanel>();
@@ -108,7 +108,7 @@ function activateConsole(app: JupyterLab, services: IServiceManager, rendermime:
   // Set the main menu title.
   menu.title.label = 'Console';
 
-  // Add the ability to create new consoles for each kernel.
+  // Add the ability to create new code consoles for each kernel.
   let specs = services.kernelspecs;
   let displayNameMap: { [key: string]: string } = Object.create(null);
   for (let kernelName in specs.kernelspecs) {
@@ -158,7 +158,7 @@ function activateConsole(app: JupyterLab, services: IServiceManager, rendermime:
             captionOptions.executed = executed;
             panel.title.caption = Private.caption(captionOptions);
           });
-          // Set the source of the code inspector to the current console.
+          // Set the source of the code inspector to the current code console.
           panel.activated.connect(() => {
             inspector.source = panel.content.inspectionHandler;
           });
@@ -304,26 +304,26 @@ namespace Private {
   export
   interface ICaptionOptions {
     /**
-     * The time when the console connected to the current kernel.
+     * The time when the code console connected to the current kernel.
      */
     connected: Date;
 
     /**
-     * The time when the console last executed its prompt.
+     * The time when the code console last executed its prompt.
      */
     executed?: Date;
 
     /**
-     * The path to the file backing the console.
+     * The path to the file backing the code console.
      *
      * #### Notes
      * Currently, the actual file does not exist, but the directory is the
-     * current working directory at the time the console was opened.
+     * current working directory at the time the code console was opened.
      */
     path: string;
 
     /**
-     * The label of the console (as displayed in tabs).
+     * The label of the code console (as displayed in tabs).
      */
     label: string;
 
@@ -334,7 +334,7 @@ namespace Private {
   }
 
   /**
-   * Generate a caption for a console's title.
+   * Generate a caption for a code console's title.
    */
   export
   function caption(options: ICaptionOptions): string {

@@ -83,7 +83,7 @@ class ImageRenderer implements RenderMime.IRenderer {
 
 
 /**
- * A renderer for plain text and Jupyter console text data.
+ * A renderer for plain text and Jupyter code console text data.
  */
 export
 class TextRenderer implements RenderMime.IRenderer {

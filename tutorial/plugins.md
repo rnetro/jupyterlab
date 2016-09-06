@@ -13,7 +13,7 @@ A JupyterLab application is comprised of:
 - Plugins
 
 A full example of an application is contained [here](https://github.com/jupyter/jupyterlab/tree/master/examples/lab).
-Looking at the `index.js` file, you can see the extensions 
+Looking at the `index.js` file, you can see the extensions
 used in the tutorial example.
 
 ## [Plugins](http://phosphorjs.github.io/phosphor/api/interfaces/_ui_application_.application.iplugin.html)
@@ -31,7 +31,7 @@ The default plugins in the JupyterLab application include:
 - [Help](http://jupyter.org/jupyterlab/modules/_help_plugin_.html) - Adds a side bar widget for displaying external documentation.
 - [File Browser](http://jupyter.org/jupyterlab/modules/_filebrowser_plugin_.html) - Creates the file browser and the document manager and the file browser to the side bar.
 - [Editor](http://jupyter.org/jupyterlab/modules/_editorwidget_plugin_.html) - Add a widget factory for displaying editable source files.
-- [Console](http://jupyter.org/jupyterlab/modules/_console_plugin_.html) - Adds the ability to launch Jupyter Console instances for
+- [Code Console](http://jupyter.org/jupyterlab/modules/_console_plugin_.html) - Adds the ability to launch Jupyter Code Console instances for
 interactive kernel console sessions.
 - [Services](http://jupyter.org/jupyterlab/modules/_services_plugin_.html#servicesprovider) - An application-specific interface to `jupyter-js-services`.
 - [RenderMime](http://jupyter.org/jupyterlab/modules/_rendermime_plugin_.html#rendermimeprovider) - The registry for adding kernel `display_data` renderers.
@@ -39,14 +39,14 @@ interactive kernel console sessions.
 - [Clipboard](http://jupyter.org/jupyterlab/modules/_clipboard_plugin_.html#clipboardprovider) - The application-wide clipboard for arbitrary MIME data.
 
 ## Application Object
-The JupyterLab [Application](http://phosphorjs.github.io/phosphor/api/classes/_ui_application_.application.html) object is given to each plugin in 
+The JupyterLab [Application](http://phosphorjs.github.io/phosphor/api/classes/_ui_application_.application.html) object is given to each plugin in
 its `activate()` function.  The Application object has a:
-- [commands](http://phosphorjs.github.io/phosphor/api/classes/_ui_application_.application.html#commands) - used to add and execute commands in the application. 
+- [commands](http://phosphorjs.github.io/phosphor/api/classes/_ui_application_.application.html#commands) - used to add and execute commands in the application.
 - [keymap](http://phosphorjs.github.io/phosphor/api/classes/_ui_application_.application.html#keymap) - used to add keyboard shortcuts to the application.
 - [shell](http://phosphorjs.github.io/phosphor/api/classes/_ui_application_.application.html#shell) - a JupyterLab shell instance.
 
 ## JupyterLab Shell
-The JupyterLab [shell](http://jupyter.org/jupyterlab/classes/_application_shell_.applicationshell.html) is used to add and interact with content in the 
+The JupyterLab [shell](http://jupyter.org/jupyterlab/classes/_application_shell_.applicationshell.html) is used to add and interact with content in the
 application.  The application consists of:
 
 - A top area for things like top level menus and toolbars
@@ -55,14 +55,13 @@ application.  The application consists of:
 - A bottom area for things like status bars
 
 ## Phosphor
-The Phosphor library is used as the underlying architecture of JupyterLab and provides 
+The Phosphor library is used as the underlying architecture of JupyterLab and provides
 many of the low level primitives and widget structure used in the application.
 Phosphor provides a rich set of widgets for developing desktop-like applications
-in the browser, as well as patterns and objects for writing clean, 
-well-abstracted code.  The widgets in the application are primarily **Phosphor 
+in the browser, as well as patterns and objects for writing clean,
+well-abstracted code.  The widgets in the application are primarily **Phosphor
 widgets**, and Phosphor concepts, like message passing and signals, are used
 throughout.  **Phosphor messages** are a *many-to-one* interaction that allows
-information like resize events to flow through the widget hierarchy in 
+information like resize events to flow through the widget hierarchy in
 the application.  **Phosphor signals** are a *one-to-many* interaction that allow
 listeners to react to changes in an observed object.
-

@@ -588,7 +588,7 @@ class Notebook extends StaticNotebook {
   selectionChanged: ISignal<Notebook, void>;
 
   /**
-   * Get the inspection handler used by the console.
+   * Get the inspection handler used by the code console.
    *
    * #### Notes
    * This is a read-only property.

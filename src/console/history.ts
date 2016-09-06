@@ -19,7 +19,7 @@ import {
 
 
 /**
- * The definition of a console history manager object.
+ * The definition of a code console history manager object.
  */
 export
 interface IConsoleHistory extends IDisposable {
@@ -29,16 +29,16 @@ interface IConsoleHistory extends IDisposable {
   kernel: IKernel;
 
   /**
-   * Get the previous item in the console history.
+   * Get the previous item in the code console history.
    *
-   * @returns A Promise for console command text or `undefined` if unavailable.
+   * @returns A Promise for code console command text or `undefined` if unavailable.
    */
   back(): Promise<string>;
 
   /**
-   * Get the next item in the console history.
+   * Get the next item in the code console history.
    *
-   * @returns A Promise for console command text or `undefined` if unavailable.
+   * @returns A Promise for code console command text or `undefined` if unavailable.
    */
   forward(): Promise<string>;
 
@@ -50,8 +50,8 @@ interface IConsoleHistory extends IDisposable {
    * #### Notes
    * If the item being added is undefined or empty, it is ignored. If the item
    * being added is the same as the last item in history, it is ignored as well
-   * so that the console's history will consist of no contiguous repetitions.
-   * This behavior varies from some shells, but the Jupyter Qt Console is
+   * so that the code console's history will consist of no contiguous repetitions.
+   * This behavior varies from some shells, but the Jupyter Qt Code Console is
    * implemented this way.
    */
   push(item: string): void;
@@ -59,12 +59,12 @@ interface IConsoleHistory extends IDisposable {
 
 
 /**
- * A console history manager object.
+ * A code console history manager object.
  */
 export
 class ConsoleHistory implements IConsoleHistory {
   /**
-   * Construct a new console history object.
+   * Construct a new code console history object.
    */
   constructor(options?: ConsoleHistory.IOptions) {
     this._history = new Vector<string>();
@@ -74,7 +74,7 @@ class ConsoleHistory implements IConsoleHistory {
   }
 
   /**
-   * Get whether the console history manager is disposed.
+   * Get whether the code console history manager is disposed.
    *
    * #### Notes
    * This is a read-only property.
@@ -105,7 +105,7 @@ class ConsoleHistory implements IConsoleHistory {
   }
 
   /**
-   * Dispose of the resources held by the console history manager.
+   * Dispose of the resources held by the code console history manager.
    */
   dispose(): void {
     if (this.isDisposed) {
@@ -116,9 +116,9 @@ class ConsoleHistory implements IConsoleHistory {
   }
 
   /**
-   * Get the previous item in the console history.
+   * Get the previous item in the code console history.
    *
-   * @returns A Promise for console command text or `undefined` if unavailable.
+   * @returns A Promise for code console command text or `undefined` if unavailable.
    */
   back(): Promise<string> {
     let content = this._history.at(--this._cursor);
@@ -145,8 +145,8 @@ class ConsoleHistory implements IConsoleHistory {
    * #### Notes
    * If the item being added is undefined or empty, it is ignored. If the item
    * being added is the same as the last item in history, it is ignored as well
-   * so that the console's history will consist of no contiguous repetitions.
-   * This behavior varies from some shells, but the Jupyter Qt Console is
+   * so that the code console's history will consist of no contiguous repetitions.
+   * This behavior varies from some shells, but the Jupyter Qt Code Console is
    * implemented this way.
    */
   push(item: string): void {
@@ -188,12 +188,12 @@ class ConsoleHistory implements IConsoleHistory {
 
 
 /**
- * A namespace for ConsoleHistory statics.
+ * A namespace for Code ConsoleHistory statics.
  */
 export
 namespace ConsoleHistory {
   /**
-   * The initialization options for a console history object.
+   * The initialization options for a code console history object.
    */
   export
   interface IOptions {

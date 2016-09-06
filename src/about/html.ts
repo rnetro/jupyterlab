@@ -96,7 +96,7 @@ const html = `
             <p>You can try these things from the command palette:</p>
             <ul>
                 <li>Open a new terminal (requires OS X or Linux)</li>
-                <li>Open an IPython console</li>
+                <li>Open an IPython code console</li>
                 <li>Open a new file</li>
                 <li>Save a file</li>
                 <li>Open up a help panel on the right</li>

@@ -54,7 +54,7 @@ def main(argv):
     """Start the 'filebrowser' example.
 
     - Start the Tornado main event loop for the Jupyter notebook server
-    - Set up the main page event handler for the 'console' example
+    - Set up the main page event handler for the 'code console' example
 
     """
     url = "http://localhost:%s" % PORT

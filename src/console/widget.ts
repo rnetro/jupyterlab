@@ -63,12 +63,12 @@ import {
 
 
 /**
- * The class name added to console widgets.
+ * The class name added to code console widgets.
  */
 const CONSOLE_CLASS = 'jp-Console';
 
 /**
- * The class name added to the console banner.
+ * The class name added to the code console banner.
  */
 const BANNER_CLASS = 'jp-Console-banner';
 
@@ -79,12 +79,12 @@ const PROMPT_CLASS = 'jp-Console-prompt';
 
 
 /**
- * A widget containing a Jupyter console.
+ * A widget containing a Jupyter code console.
  */
 export
 class ConsoleWidget extends Widget {
   /**
-   * Construct a console widget.
+   * Construct a code console widget.
    */
   constructor(options: ConsoleWidget.IOptions) {
     super();
@@ -147,13 +147,13 @@ class ConsoleWidget extends Widget {
   }
 
   /**
-   * A signal emitted when the console executes its prompt.
+   * A signal emitted when the code console executes its prompt.
    */
   executed: ISignal<ConsoleWidget, Date>;
 
 
   /**
-   * Get the inspection handler used by the console.
+   * Get the inspection handler used by the code console.
    *
    * #### Notes
    * This is a read-only property.
@@ -163,7 +163,7 @@ class ConsoleWidget extends Widget {
   }
 
   /*
-   * The last cell in a console is always a `CodeCellWidget` prompt.
+   * The last cell in a code console is always a `CodeCellWidget` prompt.
    */
   get prompt(): CodeCellWidget {
     let layout = this.layout as PanelLayout;
@@ -172,7 +172,7 @@ class ConsoleWidget extends Widget {
   }
 
   /**
-   * Get the session used by the console.
+   * Get the session used by the code console.
    *
    * #### Notes
    * This is a read-only property.
@@ -251,7 +251,7 @@ class ConsoleWidget extends Widget {
   }
 
   /**
-   * Dismiss the completion widget for a console.
+   * Dismiss the completion widget for a code console.
    */
   dismissCompletion(): void {
     this._completion.reset();
@@ -348,7 +348,7 @@ class ConsoleWidget extends Widget {
     this._completionHandler.activeCell = prompt;
     this._inspectionHandler.activeCell = prompt;
 
-    // Jump to the bottom of the console.
+    // Jump to the bottom of the code console.
     Private.scrollToBottom(this.node);
     prompt.activate();
   }
@@ -416,7 +416,7 @@ class ConsoleWidget extends Widget {
   }
 
   /**
-   * Update the console based on the kernel info.
+   * Update the code console based on the kernel info.
    */
   private _handleInfo(info: KernelMessage.IInfoReply): void {
     let layout = this.layout as PanelLayout;
@@ -447,27 +447,27 @@ defineSignal(ConsoleWidget.prototype, 'executed');
 export
 namespace ConsoleWidget {
   /**
-   * The initialization options for a console widget.
+   * The initialization options for a code console widget.
    */
   export
   interface IOptions {
     /**
-     * The completion widget for a console widget.
+     * The completion widget for a code console widget.
      */
     completion?: CompletionWidget;
 
     /**
-     * The mime renderer for the console widget.
+     * The mime renderer for the code console widget.
      */
     rendermime: IRenderMime;
 
     /**
-     * The renderer for a console widget.
+     * The renderer for a code console widget.
      */
     renderer: IRenderer;
 
     /**
-     * The session for the console widget.
+     * The session for the code console widget.
      */
     session: ISession;
   }
@@ -490,7 +490,7 @@ namespace ConsoleWidget {
 
   /* tslint:disable */
   /**
-   * The console renderer token.
+   * The code console renderer token.
    */
   export
   const IRenderer = new Token<IRenderer>('jupyter.services.console.renderer');
@@ -499,7 +499,7 @@ namespace ConsoleWidget {
 
 
 /**
- * A namespace for console widget private data.
+ * A namespace for code console widget private data.
  */
 namespace Private {
   /**

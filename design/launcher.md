@@ -2,7 +2,7 @@
 This document describes the design of the launcher plugin. This document illustrates how our research on personas and other solutions translates into the design decisions made to improve the launcher plugin.
 
 # Personas
-### William Shar 
+### William Shar
 William Shar is a high school student who has learned to code in his own time through taking codeschool classes. He was told about JupyterLab from his older brother and decided to try it out.
 
 **Goal:** Utilize launcher as the main way to open new documents
@@ -15,7 +15,7 @@ Users should be able to:
     * Notebook
     * Terminal
     * Text editor
-    * Console
+    * Code Console
 * Open the JupyterLab Tour (button or link)
 * Close the Launcher (x button)
 * Reopen the Launcher if closed and have it be the active tab/panel (Jupyter menu, command)
@@ -27,4 +27,3 @@ Users should be able to:
 
 # Design questions
 * Should the launcher show only when there are not tabs/panels open?
-
